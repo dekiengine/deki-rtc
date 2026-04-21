@@ -1,19 +1,6 @@
 #include "DekiRTCModule.h"
 #include "interop/DekiPlugin.h"
-#include "DekiRTCProvider.h"
-#include "chips/DS3231RTC.h"
-
-namespace
-{
-struct DekiRTCBackendInit
-{
-    DekiRTCBackendInit()
-    {
-        DekiRTCProvider::SetFactory([]() -> IDekiRTC* { return new DS3231RTC(); });
-    }
-};
-static DekiRTCBackendInit s_rtc_init;
-}
+#include "DekiLogSystem.h"
 
 #ifdef DEKI_EDITOR
 
@@ -44,14 +31,18 @@ DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
 #endif
 }
 DEKI_PLUGIN_API const char* DekiPlugin_GetReflectionJson(void) { return "{}"; }
-DEKI_PLUGIN_API int  DekiPlugin_Init(void)             { return 0; }
+DEKI_PLUGIN_API int  DekiPlugin_Init(void)             { DEKI_LOG_INFO("[deki-rtc] DekiPlugin_Init"); return 0; }
 DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)         { s_RTCRegistered = false; }
 DEKI_PLUGIN_API int  DekiPlugin_GetComponentCount(void){ return DekiRTC_GetAutoComponentCount(); }
 DEKI_PLUGIN_API const DekiComponentMeta* DekiPlugin_GetComponentMeta(int index)
 {
     return DekiRTC_GetAutoComponentMeta(index);
 }
-DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void) { DekiRTC_EnsureRegistered(); }
+DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void)
+{
+    int n = DekiRTC_EnsureRegistered();
+    DEKI_LOG_INFO("[deki-rtc] DekiPlugin_RegisterComponents -> %d component(s)", n);
+}
 
 DEKI_PLUGIN_API int DekiPlugin_GetFeatureCount(void) { return 0; }
 DEKI_PLUGIN_API const struct DekiModuleFeatureInfo* DekiPlugin_GetFeature(int) { return nullptr; }

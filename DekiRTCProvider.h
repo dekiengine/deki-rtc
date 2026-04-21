@@ -2,19 +2,19 @@
 
 #include "IDekiRTC.h"
 
+/**
+ * @brief Published-instance registry for the currently active RTC driver.
+ *
+ * Chip-specific SetupComponents (e.g., DS3231Component) call SetCurrent() in
+ * their Setup() once the driver is configured and initialized. Game code reads
+ * the current RTC via GetCurrent().
+ */
 class DekiRTCProvider
 {
 public:
-    using Factory = IDekiRTC* (*)();
-
-    static void     SetFactory(Factory factory);
-    static IDekiRTC* Create();
-    static bool     HasFactory();
-
     static void      SetCurrent(IDekiRTC* rtc);
     static IDekiRTC* GetCurrent();
 
 private:
-    static Factory   s_Factory;
     static IDekiRTC* s_Current;
 };

@@ -2,6 +2,7 @@
 
 #include "../IDekiRTC.h"
 #include "modules/ModuleConfig.h"
+#include "providers/IDekiI2C.h"
 #include <string>
 
 class DS3231RTC : public IDekiRTC
@@ -24,16 +25,11 @@ public:
     void         SetDateTime(const DekiDateTime& dt) override;
 
 private:
-    int          m_PinSDA = -1;
-    int          m_PinSCL = -1;
-    uint32_t     m_I2cHz  = 400000;
-    uint8_t      m_I2cAddr = 0x68;
+    int          m_BusPort = 0;
+    IDekiI2C*    m_Bus     = nullptr;
+    static constexpr uint8_t kI2cAddr = 0x68;
 
     ModuleState  m_State = ModuleState::Uninitialized;
     bool         m_HardwareConnected = false;
     std::string  m_LastError;
-
-    bool ProbeChip();
-    bool ReadRegisters(uint8_t startReg, uint8_t* dst, size_t len) const;
-    bool WriteRegisters(uint8_t startReg, const uint8_t* src, size_t len);
 };
