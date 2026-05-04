@@ -1,6 +1,6 @@
 #include "DS3231RTCComponent.h"
 #include "DekiRTCProvider.h"
-#include "modules/ModuleConfig.h"
+#include "ModuleConfig.h"
 #include "DekiLogSystem.h"
 #include <string>
 

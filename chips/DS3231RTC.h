@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../IDekiRTC.h"
-#include "modules/ModuleConfig.h"
+#include "ModuleConfig.h"
 #include "providers/IDekiI2C.h"
 #include <string>
 
