@@ -2,17 +2,20 @@
 
 #include "../IDekiRTC.h"
 #include "ModuleConfig.h"
-#include "IDekiI2C.h"  // from deki-i2c
 #include <string>
 
-class DS3231RTC : public IDekiRTC
+/**
+ * RTC driver backed by the host operating system clock. Used on desktop
+ * builds and inside the editor where no battery-backed RTC chip is present.
+ */
+class SystemClockRTC : public IDekiRTC
 {
 public:
-    DS3231RTC() = default;
-    ~DS3231RTC() override = default;
+    SystemClockRTC() = default;
+    ~SystemClockRTC() override = default;
 
     const char* GetModuleId() const override   { return "rtc"; }
-    const char* GetModuleName() const override { return "DS3231 RTC (I\xC2\xB2""C)"; }
+    const char* GetModuleName() const override { return "System Clock RTC"; }
     void        Configure(const ModuleConfig& config) override;
     bool        Initialize() override;
     void        Shutdown() override;
@@ -21,15 +24,10 @@ public:
     const char* GetLastError() const override  { return m_LastError.c_str(); }
 
     DekiDateTime Now() const override;
-    bool         IsHardwareConnected() const override { return m_HardwareConnected; }
+    bool         IsHardwareConnected() const override { return true; }
     void         SetDateTime(const DekiDateTime& dt) override;
 
 private:
-    int          m_BusPort = 0;
-    IDekiI2C*    m_Bus     = nullptr;
-    static constexpr uint8_t kI2cAddr = 0x68;
-
-    ModuleState  m_State = ModuleState::Uninitialized;
-    bool         m_HardwareConnected = false;
-    std::string  m_LastError;
+    ModuleState m_State = ModuleState::Uninitialized;
+    std::string m_LastError;
 };

@@ -1,20 +1,18 @@
-#include "DS3231RTCComponent.h"
+#include "SystemClockRTCComponent.h"
 #include "DekiRTC.h"
 #include "ModuleConfig.h"
 #include "DekiLogSystem.h"
-#include <string>
 
-static DS3231RTC* s_Driver = nullptr;
+static SystemClockRTC* s_Driver = nullptr;
 
-void DS3231RTCComponent::Setup(SetupCallback onComplete)
+void SystemClockRTCComponent::Setup(SetupCallback onComplete)
 {
     if (!s_Driver)
-        s_Driver = new DS3231RTC();
+        s_Driver = new SystemClockRTC();
 
     ModuleConfig cfg;
     cfg.moduleId = "rtc";
     cfg.enabled  = true;
-    cfg.settings["i2c_port"] = std::to_string(i2c_port);
 
     s_Driver->Configure(cfg);
 
@@ -25,8 +23,10 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
     }
     else
     {
-        DEKI_LOG_ERROR("DS3231RTCComponent: Failed to initialize DS3231 on I2C port %d", (int)i2c_port);
+        DEKI_LOG_ERROR("SystemClockRTCComponent: Initialize() failed");
     }
 
     if (onComplete) onComplete(success);
 }
+
+DEKI_REGISTER_EDITOR_AUTO_SETUP(SystemClockRTCComponent);

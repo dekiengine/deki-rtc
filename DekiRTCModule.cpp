@@ -1,6 +1,7 @@
 #include "DekiRTCModule.h"
 #include "interop/DekiPlugin.h"
 #include "DekiLogSystem.h"
+#include "DekiRTC.h"
 
 #ifdef DEKI_EDITOR
 
@@ -32,7 +33,16 @@ DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
 }
 DEKI_PLUGIN_API const char* DekiPlugin_GetReflectionJson(void) { return "{}"; }
 DEKI_PLUGIN_API int  DekiPlugin_Init(void)             { DEKI_LOG_INFO("[deki-rtc] DekiPlugin_Init"); return 0; }
-DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)         { s_RTCRegistered = false; }
+DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
+{
+    s_RTCRegistered = false;
+    // Null the provider so a hot-reload doesn't leave a dangling pointer to a
+    // driver instance whose .text is about to be unloaded with the DLL. The
+    // SetupComponent driver (e.g. SystemClockRTCComponent's s_Driver) is
+    // intentionally leaked: matches the embedded pattern (NEO6MGPSComponent /
+    // DS3231RTCComponent), where the driver lives until process exit.
+    DekiRTC::SetCurrent(nullptr);
+}
 DEKI_PLUGIN_API int  DekiPlugin_GetComponentCount(void){ return DekiRTC_GetAutoComponentCount(); }
 DEKI_PLUGIN_API const DekiComponentMeta* DekiPlugin_GetComponentMeta(int index)
 {

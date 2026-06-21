@@ -1,5 +1,5 @@
 #include "DS3231RTC.h"
-#include "providers/DekiI2CProvider.h"
+#include "DekiI2C.h"  // from deki-i2c
 #include "DekiLogSystem.h"
 
 namespace
@@ -15,7 +15,7 @@ void DS3231RTC::Configure(const ModuleConfig& config)
 
 bool DS3231RTC::Initialize()
 {
-    m_Bus = DekiI2CProvider::GetBus(m_BusPort);
+    m_Bus = DekiI2C::GetBus(m_BusPort);
     if (!m_Bus)
     {
         m_LastError = "DS3231: no I2C bus registered on requested port (add an I2CBusComponent)";
