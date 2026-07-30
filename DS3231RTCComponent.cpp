@@ -4,24 +4,24 @@
 #include "DekiLogSystem.h"
 #include <string>
 
-static DS3231RTC* s_Driver = nullptr;
+static DS3231RTC* s_DS3231Driver = nullptr;
 
 void DS3231RTCComponent::Setup(SetupCallback onComplete)
 {
-    if (!s_Driver)
-        s_Driver = new DS3231RTC();
+    if (!s_DS3231Driver)
+        s_DS3231Driver = new DS3231RTC();
 
     ModuleConfig cfg;
     cfg.moduleId = "rtc";
     cfg.enabled  = true;
     cfg.settings["i2c_port"] = std::to_string(i2c_port);
 
-    s_Driver->Configure(cfg);
+    s_DS3231Driver->Configure(cfg);
 
-    const bool success = s_Driver->Initialize();
+    const bool success = s_DS3231Driver->Initialize();
     if (success)
     {
-        DekiRTC::SetCurrent(s_Driver);
+        DekiRTC::SetCurrent(s_DS3231Driver);
     }
     else
     {

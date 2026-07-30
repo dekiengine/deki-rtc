@@ -38,7 +38,7 @@ DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
     s_RTCRegistered = false;
     // Null the provider so a hot-reload doesn't leave a dangling pointer to a
     // driver instance whose .text is about to be unloaded with the DLL. The
-    // SetupComponent driver (e.g. SystemClockRTCComponent's s_Driver) is
+    // SetupComponent driver (e.g. SystemClockRTCComponent's s_SystemClockDriver) is
     // intentionally leaked: matches the embedded pattern (NEO6MGPSComponent /
     // DS3231RTCComponent), where the driver lives until process exit.
     DekiRTC::SetCurrent(nullptr);

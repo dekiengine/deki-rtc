@@ -16,6 +16,7 @@ class DS3231RTCComponent : public SetupComponent
 public:
     DEKI_COMPONENT(DS3231RTCComponent, SetupComponent, "Sensors", "3e9b172c-4a5d-4c08-b5e7-91f3a0c2d74b", "")
     DEKI_DISPLAY_NAME("DS3231 RTC")
+    DEKI_DESCRIPTION("Reads and sets the DS3231 real-time clock over I2C.")
 
     /** @brief Which I2C bus this chip is wired to. */
     DEKI_EXPORT

@@ -3,23 +3,23 @@
 #include "ModuleConfig.h"
 #include "DekiLogSystem.h"
 
-static SystemClockRTC* s_Driver = nullptr;
+static SystemClockRTC* s_SystemClockDriver = nullptr;
 
 void SystemClockRTCComponent::Setup(SetupCallback onComplete)
 {
-    if (!s_Driver)
-        s_Driver = new SystemClockRTC();
+    if (!s_SystemClockDriver)
+        s_SystemClockDriver = new SystemClockRTC();
 
     ModuleConfig cfg;
     cfg.moduleId = "rtc";
     cfg.enabled  = true;
 
-    s_Driver->Configure(cfg);
+    s_SystemClockDriver->Configure(cfg);
 
-    const bool success = s_Driver->Initialize();
+    const bool success = s_SystemClockDriver->Initialize();
     if (success)
     {
-        DekiRTC::SetCurrent(s_Driver);
+        DekiRTC::SetCurrent(s_SystemClockDriver);
     }
     else
     {
