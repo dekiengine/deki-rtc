@@ -6,10 +6,10 @@
 #include "chips/DS3231RTC.h"
 
 /**
- * @brief Boot-prefab component for the DS3231 real-time clock.
+ * @brief Boot-scene component for the DS3231 real-time clock.
  *
  * Wires to the shared I2C bus at address 0x68. Requires an I2CBusComponent on
- * the matching port in boot.prefab.
+ * the matching port in boot.scene.
  */
 class DS3231RTCComponent : public SetupComponent
 {
