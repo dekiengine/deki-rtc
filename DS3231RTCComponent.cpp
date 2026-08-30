@@ -14,7 +14,7 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
     PackageConfig cfg;
     cfg.packageId = "rtc";
     cfg.enabled  = true;
-    cfg.settings["i2c_port"] = std::to_string(i2c_port);
+    cfg.settings["i2cPort"] = std::to_string(i2cPort);
 
     s_DS3231Driver->Configure(cfg);
 
@@ -25,7 +25,7 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
     }
     else
     {
-        DEKI_LOG_ERROR("DS3231RTCComponent: Failed to initialize DS3231 on I2C port %d", (int)i2c_port);
+        DEKI_LOG_ERROR("DS3231RTCComponent: Failed to initialize DS3231 on I2C port %d", (int)i2cPort);
     }
 
     if (onComplete) onComplete(success);

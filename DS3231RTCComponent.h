@@ -21,7 +21,7 @@ public:
     /** @brief Which I2C bus this chip is wired to. */
     DEKI_EXPORT
     DEKI_RANGE(0, 3)
-    int32_t i2c_port = 0;
+    int32_t i2cPort = 0;
 
     DS3231RTCComponent() = default;
     virtual ~DS3231RTCComponent() = default;

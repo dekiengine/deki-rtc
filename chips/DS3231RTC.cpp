@@ -10,7 +10,7 @@ namespace
 
 void DS3231RTC::Configure(const PackageConfig& config)
 {
-    m_BusPort = config.GetInt("i2c_port", 0);
+    m_BusPort = config.GetInt("i2cPort", 0);
 }
 
 bool DS3231RTC::Initialize()
