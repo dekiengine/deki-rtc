@@ -9,7 +9,7 @@
  * DekiRTC. Mirrors DS3231RTCComponent (embedded) — same SetupComponent
  * shape, just no I2C config because the host OS clock has no hardware deps.
  *
- * Auto-fired by SetupComponent::RunEditorAutoSetups() after module load.
+ * Auto-fired by SetupComponent::RunEditorAutoSetups() after package load.
  */
 class SystemClockRTCComponent : public SetupComponent
 {

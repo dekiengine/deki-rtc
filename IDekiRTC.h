@@ -1,6 +1,6 @@
 #pragma once
 
-#include "providers/IDekiModule.h"
+#include "providers/IDekiPackage.h"
 #include <cstdint>
 
 struct DekiDateTime
@@ -13,10 +13,10 @@ struct DekiDateTime
     uint8_t  second = 0;
 };
 
-class IDekiRTC : public IDekiModule
+class IDekiRTC : public IDekiPackage
 {
 public:
-    const char* GetModuleCategory() const override { return "rtc"; }
+    const char* GetPackageCategory() const override { return "rtc"; }
 
     virtual DekiDateTime Now() const = 0;
     virtual bool         IsHardwareConnected() const = 0;

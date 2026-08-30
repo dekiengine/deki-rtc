@@ -1,6 +1,6 @@
 #include "SystemClockRTCComponent.h"
 #include "DekiRTC.h"
-#include "ModuleConfig.h"
+#include "PackageConfig.h"
 #include "DekiLogSystem.h"
 
 static SystemClockRTC* s_SystemClockDriver = nullptr;
@@ -10,8 +10,8 @@ void SystemClockRTCComponent::Setup(SetupCallback onComplete)
     if (!s_SystemClockDriver)
         s_SystemClockDriver = new SystemClockRTC();
 
-    ModuleConfig cfg;
-    cfg.moduleId = "rtc";
+    PackageConfig cfg;
+    cfg.packageId = "rtc";
     cfg.enabled  = true;
 
     s_SystemClockDriver->Configure(cfg);

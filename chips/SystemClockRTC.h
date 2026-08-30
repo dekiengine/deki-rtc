@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../IDekiRTC.h"
-#include "ModuleConfig.h"
+#include "PackageConfig.h"
 #include <string>
 
 /**
@@ -14,13 +14,13 @@ public:
     SystemClockRTC() = default;
     ~SystemClockRTC() override = default;
 
-    const char* GetModuleId() const override   { return "rtc"; }
-    const char* GetModuleName() const override { return "System Clock RTC"; }
-    void        Configure(const ModuleConfig& config) override;
+    const char* GetPackageId() const override   { return "rtc"; }
+    const char* GetPackageName() const override { return "System Clock RTC"; }
+    void        Configure(const PackageConfig& config) override;
     bool        Initialize() override;
     void        Shutdown() override;
     void        Update(float) override {}
-    ModuleState GetState() const override      { return m_State; }
+    PackageState GetState() const override      { return m_State; }
     const char* GetLastError() const override  { return m_LastError.c_str(); }
 
     DekiDateTime Now() const override;
@@ -28,6 +28,6 @@ public:
     void         SetDateTime(const DekiDateTime& dt) override;
 
 private:
-    ModuleState m_State = ModuleState::Uninitialized;
+    PackageState m_State = PackageState::Uninitialized;
     std::string m_LastError;
 };

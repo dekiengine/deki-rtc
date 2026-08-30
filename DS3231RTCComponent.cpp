@@ -1,6 +1,6 @@
 #include "DS3231RTCComponent.h"
 #include "DekiRTC.h"
-#include "ModuleConfig.h"
+#include "PackageConfig.h"
 #include "DekiLogSystem.h"
 #include <string>
 
@@ -11,8 +11,8 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
     if (!s_DS3231Driver)
         s_DS3231Driver = new DS3231RTC();
 
-    ModuleConfig cfg;
-    cfg.moduleId = "rtc";
+    PackageConfig cfg;
+    cfg.packageId = "rtc";
     cfg.enabled  = true;
     cfg.settings["i2c_port"] = std::to_string(i2c_port);
 
