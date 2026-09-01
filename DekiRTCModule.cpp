@@ -31,7 +31,6 @@ DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
     return "0.0.0-dev";
 #endif
 }
-DEKI_PLUGIN_API const char* DekiPlugin_GetReflectionJson(void) { return "{}"; }
 DEKI_PLUGIN_API int  DekiPlugin_Init(void)             { DEKI_LOG_INFO("[deki-rtc] DekiPlugin_Init"); return 0; }
 DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
 {
@@ -54,8 +53,6 @@ DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void)
     DEKI_LOG_INFO("[deki-rtc] DekiPlugin_RegisterComponents -> %d component(s)", n);
 }
 
-DEKI_PLUGIN_API int DekiPlugin_GetFeatureCount(void) { return 0; }
-DEKI_PLUGIN_API const struct DekiPackageFeatureInfo* DekiPlugin_GetFeature(int) { return nullptr; }
 
 } // extern "C"
 
