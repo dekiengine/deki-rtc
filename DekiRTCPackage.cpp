@@ -1,3 +1,7 @@
+/**
+ * @file DekiRTCPackage.cpp
+ * @brief Package entry point for deki-rtc
+ */
 #include "DekiRTCPackage.h"
 #include "interop/DekiPlugin.h"
 #include "DekiLogSystem.h"
