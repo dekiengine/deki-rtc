@@ -1,7 +1,7 @@
 {
   "id": "deki-rtc",
   "displayName": "RTC (Real-Time Clock)",
-  "minEngine": "1.1.0",
+  "minEngine": "1.2.0",
   "buildDefine": "DEKI_PACKAGE_RTC",
   "requires": [
     "deki-i2c"
@@ -9,7 +9,7 @@
   "features": [
     {
       "id": "ds3231",
-      "displayName": "DS3231 (I\u00b2C)",
+      "displayName": "DS3231 (I²C)",
       "buildDefine": "DEKI_FEATURE_RTC_DS3231",
       "defaultEnabled": true,
       "componentGuids": []
