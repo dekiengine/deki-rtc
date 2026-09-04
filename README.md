@@ -2,7 +2,7 @@
 
 Real-time clock peripheral interface for the Deki Engine, with a DS3231 (I²C) backend.
 
-Part of the [Deki Engine](https://github.com/Kirbyrawr/deki-engine) package ecosystem.
+Part of the [Deki Engine](https://github.com/dekiengine/deki-engine) package ecosystem.
 
 ## Installation
 
