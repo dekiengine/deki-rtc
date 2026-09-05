@@ -1,7 +1,7 @@
 {
   "id": "deki-rtc",
   "displayName": "RTC (Real-Time Clock)",
-  "minEngine": "1.2.0",
+  "minEngine": "2.0.0",
   "buildDefine": "DEKI_PACKAGE_RTC",
   "requires": [
     "deki-i2c"
