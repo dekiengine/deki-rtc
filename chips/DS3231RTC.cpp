@@ -8,7 +8,7 @@ namespace
     inline uint8_t BinToBcd(uint8_t v) { return (uint8_t)(((v / 10) << 4) | (v % 10)); }
 }
 
-void DS3231RTC::Configure(const PackageConfig& config)
+void DS3231RTC::Configure(const Deki::PackageConfig& config)
 {
     m_BusPort = config.GetInt("i2cPort", 0);
 }
@@ -19,7 +19,7 @@ bool DS3231RTC::Initialize()
     if (!m_Bus)
     {
         m_LastError = "DS3231: no I2C bus registered on requested port (add an I2CBusComponent)";
-        m_State = PackageState::Error;
+        m_State = Deki::PackageState::Error;
         return false;
     }
 
@@ -27,14 +27,14 @@ bool DS3231RTC::Initialize()
     if (!m_HardwareConnected)
         DEKI_LOG_WARNING("DS3231RTC: chip did not ACK at 0x%02X on I2C port %d", kI2cAddr, m_BusPort);
 
-    m_State = PackageState::Initialized;
+    m_State = Deki::PackageState::Initialized;
     return true;
 }
 
 void DS3231RTC::Shutdown()
 {
     m_Bus = nullptr;
-    m_State = PackageState::Uninitialized;
+    m_State = Deki::PackageState::Uninitialized;
     m_HardwareConnected = false;
 }
 

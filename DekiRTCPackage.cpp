@@ -11,7 +11,7 @@
 
 extern void DekiRTC_RegisterComponents();
 extern int  DekiRTC_GetAutoComponentCount();
-extern const DekiComponentMeta* DekiRTC_GetAutoComponentMeta(int index);
+extern const Deki::ComponentMeta* DekiRTC_GetAutoComponentMeta(int index);
 
 static bool s_RTCRegistered = false;
 
@@ -47,7 +47,7 @@ DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
     DekiRTC::SetCurrent(nullptr);
 }
 DEKI_PLUGIN_API int  DekiPlugin_GetComponentCount(void){ return DekiRTC_GetAutoComponentCount(); }
-DEKI_PLUGIN_API const DekiComponentMeta* DekiPlugin_GetComponentMeta(int index)
+DEKI_PLUGIN_API const Deki::ComponentMeta* DekiPlugin_GetComponentMeta(int index)
 {
     return DekiRTC_GetAutoComponentMeta(index);
 }

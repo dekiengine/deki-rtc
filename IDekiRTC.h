@@ -13,7 +13,7 @@ struct DekiDateTime
     uint8_t  second = 0;
 };
 
-class IDekiRTC : public IDekiPackage
+class IDekiRTC : public Deki::IPackage
 {
 public:
     const char* GetPackageCategory() const override { return "rtc"; }

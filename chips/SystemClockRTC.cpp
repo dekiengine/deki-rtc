@@ -2,19 +2,19 @@
 #include <chrono>
 #include <ctime>
 
-void SystemClockRTC::Configure(const PackageConfig&)
+void SystemClockRTC::Configure(const Deki::PackageConfig&)
 {
 }
 
 bool SystemClockRTC::Initialize()
 {
-    m_State = PackageState::Initialized;
+    m_State = Deki::PackageState::Initialized;
     return true;
 }
 
 void SystemClockRTC::Shutdown()
 {
-    m_State = PackageState::Uninitialized;
+    m_State = Deki::PackageState::Uninitialized;
 }
 
 DekiDateTime SystemClockRTC::Now() const

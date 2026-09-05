@@ -10,7 +10,7 @@ void SystemClockRTCComponent::Setup(SetupCallback onComplete)
     if (!s_SystemClockDriver)
         s_SystemClockDriver = new SystemClockRTC();
 
-    PackageConfig cfg;
+    Deki::PackageConfig cfg;
     cfg.packageId = "rtc";
     cfg.enabled  = true;
 

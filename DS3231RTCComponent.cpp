@@ -11,7 +11,7 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
     if (!s_DS3231Driver)
         s_DS3231Driver = new DS3231RTC();
 
-    PackageConfig cfg;
+    Deki::PackageConfig cfg;
     cfg.packageId = "rtc";
     cfg.enabled  = true;
     cfg.settings["i2cPort"] = std::to_string(i2cPort);
