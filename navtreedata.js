@@ -28,8 +28,8 @@ var NAVTREE =
     [ "Components", "index.html#autotoc_md0", null ],
     [ "Feature flags", "index.html#autotoc_md1", null ],
     [ "Component reference", "index.html#autotoc_md2", [
-      [ "DS3231RTCComponent (DS3231 RTC)", "index.html#c-ds3231rtccomponent", null ],
-      [ "SystemClockRTCComponent (System Clock RTC)", "index.html#c-systemclockrtccomponent", null ]
+      [ "DS3231RTCComponent", "index.html#c-ds3231rtccomponent", null ],
+      [ "SystemClockRTCComponent", "index.html#c-systemclockrtccomponent", null ]
     ] ]
   ] ]
 ];
