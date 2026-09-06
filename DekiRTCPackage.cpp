@@ -1,0 +1,63 @@
+/**
+ * @file DekiRTCPackage.cpp
+ * @brief Package entry point for deki-rtc
+ */
+#include "DekiRTCPackage.h"
+#include <deki/interop/Plugin.h>
+#include <deki/LogSystem.h>
+#include "DekiRTC.h"
+
+#ifdef DEKI_EDITOR
+
+extern void DekiRTC_RegisterComponents();
+extern int  DekiRTC_GetAutoComponentCount();
+extern const Deki::ComponentMeta* DekiRTC_GetAutoComponentMeta(int index);
+
+static bool s_RTCRegistered = false;
+
+extern "C" {
+
+DEKI_RTC_API int DekiRTC_EnsureRegistered(void)
+{
+    if (s_RTCRegistered)
+        return DekiRTC_GetAutoComponentCount();
+    s_RTCRegistered = true;
+    DekiRTC_RegisterComponents();
+    return DekiRTC_GetAutoComponentCount();
+}
+
+DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)    { return "Deki RTC Package"; }
+DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
+{
+#ifdef DEKI_PACKAGE_VERSION
+    return DEKI_PACKAGE_VERSION;
+#else
+    return "0.0.0-dev";
+#endif
+}
+DEKI_PLUGIN_API int  DekiPlugin_Init(void)             { DEKI_LOG_INFO("[deki-rtc] DekiPlugin_Init"); return 0; }
+DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
+{
+    s_RTCRegistered = false;
+    // Null the provider so a hot-reload doesn't leave a dangling pointer to a
+    // driver instance whose .text is about to be unloaded with the DLL. The
+    // SetupComponent driver (e.g. SystemClockRTCComponent's s_SystemClockDriver) is
+    // intentionally leaked: matches the embedded pattern (NEO6MGPSComponent /
+    // DS3231RTCComponent), where the driver lives until process exit.
+    DekiRTC::SetCurrent(nullptr);
+}
+DEKI_PLUGIN_API int  DekiPlugin_GetComponentCount(void){ return DekiRTC_GetAutoComponentCount(); }
+DEKI_PLUGIN_API const Deki::ComponentMeta* DekiPlugin_GetComponentMeta(int index)
+{
+    return DekiRTC_GetAutoComponentMeta(index);
+}
+DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void)
+{
+    int n = DekiRTC_EnsureRegistered();
+    DEKI_LOG_INFO("[deki-rtc] DekiPlugin_RegisterComponents -> %d component(s)", n);
+}
+
+
+} // extern "C"
+
+#endif // DEKI_EDITOR
