@@ -11,12 +11,12 @@
  *
  * Auto-fired by SetupComponent::RunEditorAutoSetups() after package load.
  */
+DEKI_CATEGORY("System")
+DEKI_DISPLAY_NAME("System Clock RTC")
+DEKI_DESCRIPTION("Uses the computer's own clock as the real-time clock, for editor and desktop runs.")
 class SystemClockRTCComponent : public Deki::SetupComponent
 {
 public:
-    DEKI_COMPONENT(SystemClockRTCComponent, Deki::SetupComponent, "System", "2c7d4e83-1f5a-4b29-9e6d-3c8b0f1a4d72", "")
-    DEKI_DISPLAY_NAME("System Clock RTC")
-    DEKI_DESCRIPTION("Uses the computer's own clock as the real-time clock, for editor and desktop runs.")
 
     SystemClockRTCComponent() = default;
     virtual ~SystemClockRTCComponent() = default;
@@ -25,4 +25,3 @@ public:
     const char* GetSetupName() const override { return "System Clock RTC"; }
 };
 
-#include "generated/SystemClockRTCComponent.gen.h"
