@@ -35,7 +35,7 @@ DEKI_RTC_API int DekiRTC_EnsureRegistered(void)
     return ::DekiRTC_GetAutoComponentCount();
 }
 
-DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)    { return "DekiRendering::Deki RTC Package"; }
+DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)    { return "Deki RTC Package"; }
 DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
 {
 #ifdef DEKI_PACKAGE_VERSION

@@ -21,7 +21,7 @@ bool DS3231RTC::Initialize()
     m_Bus = DekiI2c::DekiI2C::GetBus(m_BusPort);
     if (!m_Bus)
     {
-        m_LastError = "DS3231: no I2C bus registered on requested port (add an DekiI2c::I2CBusComponent)";
+        m_LastError = "DS3231: no I2C bus registered on requested port (add an I2C Bus component)";
         m_State = Deki::PackageState::Error;
         return false;
     }

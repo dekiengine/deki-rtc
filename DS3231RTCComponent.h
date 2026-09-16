@@ -24,6 +24,7 @@ public:
 
     /** @brief Which I2C bus this chip is wired to. */
     DEKI_EXPORT
+    DEKI_TOOLTIP("Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.")
     DEKI_RANGE(0, 3)
     int32_t i2cPort = 0;
 
