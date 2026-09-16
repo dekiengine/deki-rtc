@@ -1,5 +1,8 @@
 #include "DekiRTC.h"
 
+namespace DekiRtc
+{
+
 IDekiRTC* DekiRTC::s_Current = nullptr;
 
 void DekiRTC::SetCurrent(IDekiRTC* rtc)
@@ -11,3 +14,5 @@ IDekiRTC* DekiRTC::GetCurrent()
 {
     return s_Current;
 }
+
+}  // namespace DekiRtc

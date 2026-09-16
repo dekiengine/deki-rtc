@@ -3,6 +3,9 @@
 #include <deki/providers/IPackage.h>
 #include <cstdint>
 
+namespace DekiRtc
+{
+
 struct DekiDateTime
 {
     uint16_t year   = 0;
@@ -23,3 +26,5 @@ public:
 
     virtual void SetDateTime(const DekiDateTime& dt) = 0;
 };
+
+}  // namespace DekiRtc

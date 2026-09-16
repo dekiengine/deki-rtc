@@ -2,6 +2,9 @@
 
 #include "IDekiRTC.h"
 
+namespace DekiRtc
+{
+
 /**
  * @brief Active-driver registry and one-call facade for RTC.
  *
@@ -21,3 +24,5 @@ public:
 private:
     static IDekiRTC* s_Current;
 };
+
+}  // namespace DekiRtc

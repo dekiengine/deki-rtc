@@ -5,6 +5,9 @@
 #include "IDekiI2C.h"  // from deki-i2c
 #include <string>
 
+namespace DekiRtc
+{
+
 class DS3231RTC : public IDekiRTC
 {
 public:
@@ -26,10 +29,12 @@ public:
 
 private:
     int          m_BusPort = 0;
-    IDekiI2C*    m_Bus     = nullptr;
+    DekiI2c::IDekiI2C*    m_Bus     = nullptr;
     static constexpr uint8_t kI2cAddr = 0x68;
 
     Deki::PackageState  m_State = Deki::PackageState::Uninitialized;
     bool         m_HardwareConnected = false;
     std::string  m_LastError;
 };
+
+}  // namespace DekiRtc

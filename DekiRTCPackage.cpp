@@ -7,26 +7,35 @@
 #include <deki/LogSystem.h>
 #include "DekiRTC.h"
 
-#ifdef DEKI_EDITOR
-
 extern void DekiRTC_RegisterComponents();
 extern int  DekiRTC_GetAutoComponentCount();
 extern const Deki::ComponentMeta* DekiRTC_GetAutoComponentMeta(int index);
 
+namespace DekiRtc
+{
+
+#ifdef DEKI_EDITOR
+
+
 static bool s_RTCRegistered = false;
+
+
+// The exports below are C symbols at global scope; the package's own
+// registration helpers and statics live in its namespace.
+using namespace DekiRtc;
 
 extern "C" {
 
 DEKI_RTC_API int DekiRTC_EnsureRegistered(void)
 {
     if (s_RTCRegistered)
-        return DekiRTC_GetAutoComponentCount();
+        return ::DekiRTC_GetAutoComponentCount();
     s_RTCRegistered = true;
-    DekiRTC_RegisterComponents();
-    return DekiRTC_GetAutoComponentCount();
+    ::DekiRTC_RegisterComponents();
+    return ::DekiRTC_GetAutoComponentCount();
 }
 
-DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)    { return "Deki RTC Package"; }
+DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)    { return "DekiRendering::Deki RTC Package"; }
 DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
 {
 #ifdef DEKI_PACKAGE_VERSION
@@ -46,18 +55,20 @@ DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
     // DS3231RTCComponent), where the driver lives until process exit.
     DekiRTC::SetCurrent(nullptr);
 }
-DEKI_PLUGIN_API int  DekiPlugin_GetComponentCount(void){ return DekiRTC_GetAutoComponentCount(); }
+DEKI_PLUGIN_API int  DekiPlugin_GetComponentCount(void){ return ::DekiRTC_GetAutoComponentCount(); }
 DEKI_PLUGIN_API const Deki::ComponentMeta* DekiPlugin_GetComponentMeta(int index)
 {
-    return DekiRTC_GetAutoComponentMeta(index);
+    return ::DekiRTC_GetAutoComponentMeta(index);
 }
 DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void)
 {
     int n = DekiRTC_EnsureRegistered();
-    DEKI_LOG_INFO("[deki-rtc] DekiPlugin_RegisterComponents -> %d component(s)", n);
+    DEKI_LOG_INFO("[deki-rtc] ::DekiPlugin_RegisterComponents -> %d component(s)", n);
 }
 
 
 } // extern "C"
 
 #endif // DEKI_EDITOR
+}  // namespace DekiRtc
+

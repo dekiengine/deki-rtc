@@ -4,6 +4,9 @@
 #include <deki/LogSystem.h>
 #include <string>
 
+namespace DekiRtc
+{
+
 static DS3231RTC* s_DS3231Driver = nullptr;
 
 void DS3231RTCComponent::Setup(SetupCallback onComplete)
@@ -30,3 +33,5 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
 
     if (onComplete) onComplete(success);
 }
+
+}  // namespace DekiRtc

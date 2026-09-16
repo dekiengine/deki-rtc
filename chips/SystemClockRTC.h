@@ -4,6 +4,9 @@
 #include <deki/PackageConfig.h>
 #include <string>
 
+namespace DekiRtc
+{
+
 /**
  * RTC driver backed by the host operating system clock. Used on desktop
  * builds and inside the editor where no battery-backed RTC chip is present.
@@ -31,3 +34,5 @@ private:
     Deki::PackageState m_State = Deki::PackageState::Uninitialized;
     std::string m_LastError;
 };
+
+}  // namespace DekiRtc

@@ -3,6 +3,9 @@
 #include <deki/PackageConfig.h>
 #include <deki/LogSystem.h>
 
+namespace DekiRtc
+{
+
 static SystemClockRTC* s_SystemClockDriver = nullptr;
 
 void SystemClockRTCComponent::Setup(SetupCallback onComplete)
@@ -30,3 +33,5 @@ void SystemClockRTCComponent::Setup(SetupCallback onComplete)
 }
 
 DEKI_REGISTER_EDITOR_AUTO_SETUP(SystemClockRTCComponent);
+
+}  // namespace DekiRtc

@@ -2,6 +2,9 @@
 #include <chrono>
 #include <ctime>
 
+namespace DekiRtc
+{
+
 void SystemClockRTC::Configure(const Deki::PackageConfig&)
 {
 }
@@ -43,3 +46,5 @@ void SystemClockRTC::SetDateTime(const DekiDateTime&)
 {
     m_LastError = "SystemClockRTC: setting the host clock is not supported";
 }
+
+}  // namespace DekiRtc
