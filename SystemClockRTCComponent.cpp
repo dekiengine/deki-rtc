@@ -32,6 +32,8 @@ void SystemClockRTCComponent::Setup(SetupCallback onComplete)
     if (onComplete) onComplete(success);
 }
 
+// Project open, not Play. Reading the machine's clock is local and free, and
+// a component that shows a time should show one in the editor too.
 DEKI_REGISTER_EDITOR_AUTO_SETUP(SystemClockRTCComponent);
 
 }  // namespace DekiRtc
