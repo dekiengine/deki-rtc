@@ -8,6 +8,12 @@ breaking change bumps the minor across the editor, the engine and every
 package together, so a package with no changes of its own is still released
 alongside one that has them.
 
+## Unreleased
+
+### Changed
+- No longer declares the ESP-IDF `driver` component, which nothing here used
+  and which ESP-IDF 6 deprecates.
+
 ## 0.16.0
 
 ### Changed
