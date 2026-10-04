@@ -7,10 +7,8 @@
 namespace DekiRtc
 {
 
-/**
- * RTC driver backed by the host operating system clock. Used on desktop
- * builds and inside the editor where no battery-backed RTC chip is present.
- */
+/// Real-time clock driver that reads the operating system's clock. Used on
+/// desktop and in the editor, where there is no battery-backed clock chip.
 class SystemClockRTC : public IDekiRTC
 {
 public:

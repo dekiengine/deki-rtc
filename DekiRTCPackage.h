@@ -1,6 +1,5 @@
 #pragma once
 
-// DLL export macro
 #ifdef _WIN32
 #ifdef DEKI_RTC_EXPORTS
 #define DEKI_RTC_API __declspec(dllexport)

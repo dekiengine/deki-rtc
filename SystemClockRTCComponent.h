@@ -7,13 +7,11 @@
 namespace DekiRtc
 {
 
-/**
- * @brief Editor / desktop SetupComponent that registers a SystemClockRTC with
- * DekiRTC. Mirrors DS3231RTCComponent (embedded) — same SetupComponent
- * shape, just no I2C config because the host OS clock has no hardware deps.
- *
- * Auto-fired by SetupComponent::RunEditorAutoSetups() after package load.
- */
+/// Desktop and editor counterpart of DS3231RTCComponent: registers a
+/// SystemClockRTC with DekiRTC. It has no I2C settings because it reads the
+/// operating system's clock.
+///
+/// Run automatically when a project opens.
 DEKI_CATEGORY("System")
 DEKI_DISPLAY_NAME("System Clock RTC")
 DEKI_DESCRIPTION("Uses the computer's own clock as the real-time clock, for editor and desktop runs.")

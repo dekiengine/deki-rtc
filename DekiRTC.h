@@ -5,16 +5,12 @@
 namespace DekiRtc
 {
 
-/**
- * @brief Active-driver registry and one-call facade for RTC.
- *
- * A SetupComponent (DS3231RTCComponent on embedded, SystemClockRTCComponent
- * on desktop / editor) registers its IDekiRTC driver via SetCurrent() during
- * Setup(). Game / editor code reads the current time via Now() — handles the
- * provider lookup and null check internally and is the single entry point.
- * GetCurrent() is exposed for cases where you need the driver pointer
- * directly (e.g. SetDateTime).
- */
+/// Holds the active real-time clock driver.
+///
+/// A SetupComponent (DS3231RTCComponent on a device, SystemClockRTCComponent
+/// on desktop and in the editor) registers its driver with SetCurrent()
+/// during Setup(). Game and editor code read the time through
+/// GetCurrent()->Now().
 class DekiRTC
 {
 public:

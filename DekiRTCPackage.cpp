@@ -1,7 +1,4 @@
-/**
- * @file DekiRTCPackage.cpp
- * @brief Package entry point for deki-rtc
- */
+// Package entry point for deki-rtc.
 #include "DekiRTCPackage.h"
 #include <deki/interop/Plugin.h>
 #include <deki/LogSystem.h>
@@ -54,11 +51,9 @@ extern "C"
     DEKI_PLUGIN_API void DekiPluginShutdown(void)
     {
         s_RTCRegistered = false;
-        // Null the provider so a hot-reload doesn't leave a dangling pointer to a
-        // driver instance whose .text is about to be unloaded with the DLL. The
-        // SetupComponent driver (e.g. SystemClockRTCComponent's s_SystemClockDriver) is
-        // intentionally leaked: matches the embedded pattern (NEO6MGPSComponent /
-        // DS3231RTCComponent), where the driver lives until process exit.
+        // Clear the provider so a hot reload leaves no pointer to a driver
+        // whose code unloads with the DLL. The driver object itself is leaked
+        // on purpose: as on a device, a driver lives until the process exits.
         DekiRTC::SetCurrent(nullptr);
     }
     DEKI_PLUGIN_API int DekiPluginGetComponentCount(void)
