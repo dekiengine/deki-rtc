@@ -18,7 +18,7 @@ namespace DekiRtc
 class DekiRTC
 {
 public:
-    static void      SetCurrent(IDekiRTC* rtc);
+    static void SetCurrent(IDekiRTC* rtc);
     static IDekiRTC* GetCurrent();
 
 private:

@@ -8,7 +8,7 @@
 #include "DekiRTC.h"
 
 extern void DekiRTC_RegisterComponents();
-extern int  DekiRTC_GetAutoComponentCount();
+extern int DekiRTC_GetAutoComponentCount();
 extern const Deki::ComponentMeta* DekiRTC_GetAutoComponentMeta(int index);
 
 namespace DekiRtc
@@ -16,58 +16,65 @@ namespace DekiRtc
 
 #ifdef DEKI_EDITOR
 
-
 static bool s_RTCRegistered = false;
-
 
 // The exports below are C symbols at global scope; the package's own
 // registration helpers and statics live in its namespace.
 using namespace DekiRtc;
 
-extern "C" {
-
-DEKI_RTC_API int DekiRTC_EnsureRegistered(void)
+extern "C"
 {
-    if (s_RTCRegistered)
+    DEKI_RTC_API int DekiRTC_EnsureRegistered(void)
+    {
+        if (s_RTCRegistered)
+        {
+            return ::DekiRTC_GetAutoComponentCount();
+        }
+        s_RTCRegistered = true;
+        ::DekiRTC_RegisterComponents();
         return ::DekiRTC_GetAutoComponentCount();
-    s_RTCRegistered = true;
-    ::DekiRTC_RegisterComponents();
-    return ::DekiRTC_GetAutoComponentCount();
-}
+    }
 
-DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)    { return "Deki RTC Package"; }
-DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
-{
+    DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)
+    {
+        return "Deki RTC Package";
+    }
+    DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
+    {
 #ifdef DEKI_PACKAGE_VERSION
-    return DEKI_PACKAGE_VERSION;
+        return DEKI_PACKAGE_VERSION;
 #else
-    return "0.0.0-dev";
+        return "0.0.0-dev";
 #endif
-}
-DEKI_PLUGIN_API int  DekiPlugin_Init(void)             { return 0; }
-DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
-{
-    s_RTCRegistered = false;
-    // Null the provider so a hot-reload doesn't leave a dangling pointer to a
-    // driver instance whose .text is about to be unloaded with the DLL. The
-    // SetupComponent driver (e.g. SystemClockRTCComponent's s_SystemClockDriver) is
-    // intentionally leaked: matches the embedded pattern (NEO6MGPSComponent /
-    // DS3231RTCComponent), where the driver lives until process exit.
-    DekiRTC::SetCurrent(nullptr);
-}
-DEKI_PLUGIN_API int  DekiPlugin_GetComponentCount(void){ return ::DekiRTC_GetAutoComponentCount(); }
-DEKI_PLUGIN_API const Deki::ComponentMeta* DekiPlugin_GetComponentMeta(int index)
-{
-    return ::DekiRTC_GetAutoComponentMeta(index);
-}
-DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void)
-{
-    DekiRTC_EnsureRegistered();
-}
+    }
+    DEKI_PLUGIN_API int DekiPlugin_Init(void)
+    {
+        return 0;
+    }
+    DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
+    {
+        s_RTCRegistered = false;
+        // Null the provider so a hot-reload doesn't leave a dangling pointer to a
+        // driver instance whose .text is about to be unloaded with the DLL. The
+        // SetupComponent driver (e.g. SystemClockRTCComponent's s_SystemClockDriver) is
+        // intentionally leaked: matches the embedded pattern (NEO6MGPSComponent /
+        // DS3231RTCComponent), where the driver lives until process exit.
+        DekiRTC::SetCurrent(nullptr);
+    }
+    DEKI_PLUGIN_API int DekiPlugin_GetComponentCount(void)
+    {
+        return ::DekiRTC_GetAutoComponentCount();
+    }
+    DEKI_PLUGIN_API const Deki::ComponentMeta* DekiPlugin_GetComponentMeta(int index)
+    {
+        return ::DekiRTC_GetAutoComponentMeta(index);
+    }
+    DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void)
+    {
+        DekiRTC_EnsureRegistered();
+    }
 
+}  // extern "C"
 
-} // extern "C"
-
-#endif // DEKI_EDITOR
+#endif  // DEKI_EDITOR
 }  // namespace DekiRtc
-

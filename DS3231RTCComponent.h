@@ -21,7 +21,6 @@ DEKI_FORMER_NAME("DS3231RTCComponent")
 class DS3231RTCComponent : public Deki::SetupComponent
 {
 public:
-
     /** @brief Which I2C bus this chip is wired to. */
     DEKI_EXPORT
     DEKI_TOOLTIP("Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.")
@@ -31,9 +30,8 @@ public:
     DS3231RTCComponent() = default;
     virtual ~DS3231RTCComponent() = default;
 
-    void        Setup(SetupCallback onComplete) override;
+    void Setup(SetupCallback onComplete) override;
     const char* GetSetupName() const override { return "DS3231 RTC"; }
 };
 
 }  // namespace DekiRtc
-

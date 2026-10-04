@@ -21,13 +21,11 @@ DEKI_FORMER_NAME("SystemClockRTCComponent")
 class SystemClockRTCComponent : public Deki::SetupComponent
 {
 public:
-
     SystemClockRTCComponent() = default;
     virtual ~SystemClockRTCComponent() = default;
 
-    void        Setup(SetupCallback onComplete) override;
+    void Setup(SetupCallback onComplete) override;
     const char* GetSetupName() const override { return "System Clock RTC"; }
 };
 
 }  // namespace DekiRtc
-

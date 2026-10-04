@@ -12,11 +12,13 @@ static DS3231RTC* s_DS3231Driver = nullptr;
 void DS3231RTCComponent::Setup(SetupCallback onComplete)
 {
     if (!s_DS3231Driver)
+    {
         s_DS3231Driver = new DS3231RTC();
+    }
 
     Deki::PackageConfig cfg;
     cfg.packageId = "rtc";
-    cfg.enabled  = true;
+    cfg.enabled = true;
     cfg.settings["i2cPort"] = std::to_string(i2cPort);
 
     s_DS3231Driver->Configure(cfg);
@@ -31,7 +33,10 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
         DEKI_LOG_ERROR("DS3231RTCComponent: Failed to initialize DS3231 on I2C port %d", (int)i2cPort);
     }
 
-    if (onComplete) onComplete(success);
+    if (onComplete)
+    {
+        onComplete(success);
+    }
 }
 
 }  // namespace DekiRtc

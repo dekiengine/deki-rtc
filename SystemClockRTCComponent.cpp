@@ -11,11 +11,13 @@ static SystemClockRTC* s_SystemClockDriver = nullptr;
 void SystemClockRTCComponent::Setup(SetupCallback onComplete)
 {
     if (!s_SystemClockDriver)
+    {
         s_SystemClockDriver = new SystemClockRTC();
+    }
 
     Deki::PackageConfig cfg;
     cfg.packageId = "rtc";
-    cfg.enabled  = true;
+    cfg.enabled = true;
 
     s_SystemClockDriver->Configure(cfg);
 
@@ -29,7 +31,10 @@ void SystemClockRTCComponent::Setup(SetupCallback onComplete)
         DEKI_LOG_ERROR("SystemClockRTCComponent: Initialize() failed");
     }
 
-    if (onComplete) onComplete(success);
+    if (onComplete)
+    {
+        onComplete(success);
+    }
 }
 
 // Project open, not Play. Reading the machine's clock is local and free, and
