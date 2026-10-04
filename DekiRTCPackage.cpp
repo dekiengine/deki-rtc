@@ -7,9 +7,9 @@
 #include <deki/LogSystem.h>
 #include "DekiRTC.h"
 
-extern void DekiRTC_RegisterComponents();
-extern int DekiRTC_GetAutoComponentCount();
-extern const Deki::ComponentMeta* DekiRTC_GetAutoComponentMeta(int index);
+extern void DekiRTCRegisterComponents();
+extern int DekiRTCGetAutoComponentCount();
+extern const Deki::ComponentMeta* DekiRTCGetAutoComponentMeta(int index);
 
 namespace DekiRtc
 {
@@ -24,22 +24,22 @@ using namespace DekiRtc;
 
 extern "C"
 {
-    DEKI_RTC_API int DekiRTC_EnsureRegistered(void)
+    DEKI_RTC_API int DekiRTCEnsureRegistered(void)
     {
         if (s_RTCRegistered)
         {
-            return ::DekiRTC_GetAutoComponentCount();
+            return ::DekiRTCGetAutoComponentCount();
         }
         s_RTCRegistered = true;
-        ::DekiRTC_RegisterComponents();
-        return ::DekiRTC_GetAutoComponentCount();
+        ::DekiRTCRegisterComponents();
+        return ::DekiRTCGetAutoComponentCount();
     }
 
-    DEKI_PLUGIN_API const char* DekiPlugin_GetName(void)
+    DEKI_PLUGIN_API const char* DekiPluginGetName(void)
     {
         return "Deki RTC Package";
     }
-    DEKI_PLUGIN_API const char* DekiPlugin_GetVersion(void)
+    DEKI_PLUGIN_API const char* DekiPluginGetVersion(void)
     {
 #ifdef DEKI_PACKAGE_VERSION
         return DEKI_PACKAGE_VERSION;
@@ -47,11 +47,11 @@ extern "C"
         return "0.0.0-dev";
 #endif
     }
-    DEKI_PLUGIN_API int DekiPlugin_Init(void)
+    DEKI_PLUGIN_API int DekiPluginInit(void)
     {
         return 0;
     }
-    DEKI_PLUGIN_API void DekiPlugin_Shutdown(void)
+    DEKI_PLUGIN_API void DekiPluginShutdown(void)
     {
         s_RTCRegistered = false;
         // Null the provider so a hot-reload doesn't leave a dangling pointer to a
@@ -61,17 +61,17 @@ extern "C"
         // DS3231RTCComponent), where the driver lives until process exit.
         DekiRTC::SetCurrent(nullptr);
     }
-    DEKI_PLUGIN_API int DekiPlugin_GetComponentCount(void)
+    DEKI_PLUGIN_API int DekiPluginGetComponentCount(void)
     {
-        return ::DekiRTC_GetAutoComponentCount();
+        return ::DekiRTCGetAutoComponentCount();
     }
-    DEKI_PLUGIN_API const Deki::ComponentMeta* DekiPlugin_GetComponentMeta(int index)
+    DEKI_PLUGIN_API const Deki::ComponentMeta* DekiPluginGetComponentMeta(int index)
     {
-        return ::DekiRTC_GetAutoComponentMeta(index);
+        return ::DekiRTCGetAutoComponentMeta(index);
     }
-    DEKI_PLUGIN_API void DekiPlugin_RegisterComponents(void)
+    DEKI_PLUGIN_API void DekiPluginRegisterComponents(void)
     {
-        DekiRTC_EnsureRegistered();
+        DekiRTCEnsureRegistered();
     }
 
 }  // extern "C"
