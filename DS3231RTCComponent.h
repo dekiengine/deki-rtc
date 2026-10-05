@@ -15,7 +15,6 @@ namespace DekiRtc
 DEKI_CATEGORY("Sensors")
 DEKI_DISPLAY_NAME("DS3231 RTC")
 DEKI_DESCRIPTION("Reads and sets the DS3231 real-time clock over I2C.")
-DEKI_FORMER_NAME("DS3231RTCComponent")
 class DS3231RTCComponent : public Deki::SetupComponent
 {
 public:
