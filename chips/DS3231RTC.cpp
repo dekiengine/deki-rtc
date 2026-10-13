@@ -65,7 +65,19 @@ DekiDateTime DS3231RTC::Now() const
 
     dt.second = BcdToBin(reg[0] & 0x7F);
     dt.minute = BcdToBin(reg[1] & 0x7F);
-    dt.hour = BcdToBin(reg[2] & 0x3F);
+    // Bit 6 of the hours register selects 12-hour mode, where bit 5 is PM and
+    // the hour runs 1-12. SetDateTime writes 24-hour, but a chip set up by
+    // other firmware may still be in 12-hour mode, and masked as 24-hour its
+    // PM bit read as twenty hours.
+    if (reg[2] & 0x40)
+    {
+        const uint8_t h12 = BcdToBin(reg[2] & 0x1F);
+        dt.hour = (uint8_t)(h12 % 12 + ((reg[2] & 0x20) ? 12 : 0));
+    }
+    else
+    {
+        dt.hour = BcdToBin(reg[2] & 0x3F);
+    }
     dt.day = BcdToBin(reg[4] & 0x3F);
     dt.month = BcdToBin(reg[5] & 0x1F);
     dt.year = (uint16_t)(2000 + BcdToBin(reg[6]));
