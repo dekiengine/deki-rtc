@@ -1,0 +1,6 @@
+{
+    "DS3231RTC Component": "DS3231RTC コンポーネント",
+    "I 2c Port": "I2C ポート",
+    "System Clock RTC Component": "システムクロック RTC コンポーネント",
+    "Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.": "時計チップがつながっている I2C バスです。そのポートを設定した I2C バスコンポーネントと一致させる必要があります。"
+}
