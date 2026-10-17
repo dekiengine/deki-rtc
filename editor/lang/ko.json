@@ -6,5 +6,7 @@
     "Reads and sets the DS3231 real-time clock over I2C.": "I2C로 DS3231 실시간 클럭을 읽고 설정합니다.",
     "Sensors": "센서",
     "System": "시스템",
-    "Uses the computer's own clock as the real-time clock, for editor and desktop runs.": "에디터와 데스크톱에서 실행할 때 컴퓨터 자체의 시계를 실시간 클럭으로 사용합니다."
+    "Uses the computer's own clock as the real-time clock, for editor and desktop runs.": "에디터와 데스크톱에서 실행할 때 컴퓨터 자체의 시계를 실시간 클럭으로 사용합니다.",
+    "DS3231 RTC": "DS3231 RTC",
+    "System Clock RTC": "시스템 시계 RTC"
 }

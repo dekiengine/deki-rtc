@@ -6,5 +6,7 @@
     "Reads and sets the DS3231 real-time clock over I2C.": "DS3231 リアルタイムクロックの時刻を I2C で読み取り、設定します。",
     "Sensors": "センサー",
     "System": "システム",
-    "Uses the computer's own clock as the real-time clock, for editor and desktop runs.": "コンピューター自身の時計をリアルタイムクロックとして使います。エディターとデスクトップでの実行用です。"
+    "Uses the computer's own clock as the real-time clock, for editor and desktop runs.": "コンピューター自身の時計をリアルタイムクロックとして使います。エディターとデスクトップでの実行用です。",
+    "DS3231 RTC": "DS3231 RTC",
+    "System Clock RTC": "システムクロック RTC"
 }
