@@ -2,5 +2,9 @@
     "DS3231RTC Component": "DS3231RTC 组件",
     "I 2c Port": "I2C 端口",
     "System Clock RTC Component": "系统时钟 RTC 组件",
-    "Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.": "时钟芯片所在的 I2C 总线。必须与设置该端口的 I2C 总线组件一致。"
+    "Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.": "时钟芯片所在的 I2C 总线。必须与设置该端口的 I2C 总线组件一致。",
+    "Reads and sets the DS3231 real-time clock over I2C.": "通过 I2C 读取和设置 DS3231 实时时钟。",
+    "Sensors": "传感器",
+    "System": "系统",
+    "Uses the computer's own clock as the real-time clock, for editor and desktop runs.": "使用计算机自身的时钟作为实时时钟，用于在编辑器和桌面上运行时。"
 }

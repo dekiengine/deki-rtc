@@ -2,5 +2,9 @@
     "DS3231RTC Component": "DS3231RTC コンポーネント",
     "I 2c Port": "I2C ポート",
     "System Clock RTC Component": "システムクロック RTC コンポーネント",
-    "Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.": "時計チップがつながっている I2C バスです。そのポートを設定した I2C バスコンポーネントと一致させる必要があります。"
+    "Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.": "時計チップがつながっている I2C バスです。そのポートを設定した I2C バスコンポーネントと一致させる必要があります。",
+    "Reads and sets the DS3231 real-time clock over I2C.": "DS3231 リアルタイムクロックの時刻を I2C で読み取り、設定します。",
+    "Sensors": "センサー",
+    "System": "システム",
+    "Uses the computer's own clock as the real-time clock, for editor and desktop runs.": "コンピューター自身の時計をリアルタイムクロックとして使います。エディターとデスクトップでの実行用です。"
 }
