@@ -1,6 +1,6 @@
 {
     "DS3231RTC Component": "DS3231RTC 컴포넌트",
-    "I 2c Port": "I2C 포트",
+    "I2C Port": "I2C 포트",
     "System Clock RTC Component": "시스템 클럭 RTC 컴포넌트",
     "Which I2C bus the clock chip is on. Must match the I2C Bus component that set that port up.": "시계 칩이 연결된 I2C 버스입니다. 해당 포트를 설정한 I2C 버스 컴포넌트와 일치해야 합니다.",
     "Reads and sets the DS3231 real-time clock over I2C.": "I2C로 DS3231 실시간 클럭을 읽고 설정합니다.",
