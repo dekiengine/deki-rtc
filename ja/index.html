@@ -57,7 +57,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">deki-rtc<span id="projectnumber">&#160;0.21.0</span>
+   <div id="projectname">deki-rtc<span id="projectnumber">&#160;0.22.0</span>
    </div>
    <div id="projectbrief">Deki パッケージリファレンス</div>
   </td>
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded',() => { initNavTree('index.html',''
 <img src="deki-rtc.png" alt=""/>
 </div>
     <p>リアルタイムクロックの周辺機器（ペリフェラル）。シーンコンポーネントから現在時刻を読み書きでき、DS3231（I²C）用のバックエンドを備えます。</p>
-<p>リポジトリ: <a href="https://github.com/dekiengine/deki-rtc">github.com/dekiengine/deki-rtc</a> · 最新リリース: 0.20.0 · エンジン 0.19.0 以降が必要 · 依存: <a href="https://dekiengine.github.io/deki-i2c/ja/">deki-i2c</a></p>
+<p>リポジトリ: <a href="https://github.com/dekiengine/deki-rtc">github.com/dekiengine/deki-rtc</a> · 最新リリース: 0.22.0 · エンジン 0.22.0 以降が必要 · 依存: <a href="https://dekiengine.github.io/deki-i2c/ja/">deki-i2c</a></p>
 <p><span class="tt">DekiEditor --packages-add deki-rtc &lt;project&gt;</span> か、パッケージマネージャーからインストールします。エンジン自身のコンポーネントと C++ API は <a href="https://dekiengine.github.io/docs/ja/">Deki のドキュメント</a>にあります。</p>
 <p>エディターでは <b>RTC (Real-Time Clock)</b> と表示されます。</p>
 <h1 class="doxsection"><a class="anchor" id="components"></a>
@@ -158,27 +158,23 @@ SystemClockRTCComponent</h2>
 変更履歴</h1>
 <p>変更履歴は英語です。</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
-0.20.0</h2>
+0.22.0</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
+Changed</h2>
+<ul>
+<li>Translations are keyed by the editor's names with their acronyms ("I2C Port", "SPI Host" rather than "I 2c Port", "Spi Host"), which the 0.22 editor shows.</li>
+<li><span class="tt">minEngine</span> 0.22.0: built against engine 0.22.0. A build of this package from before does not load and is rebuilt.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
+0.20.0</h2>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
 Fixed</h2>
 <ul>
 <li>The component display names the translation check had missed are translated into Japanese, Simplified Chinese and Korean.</li>
 </ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
-0.19.0</h2>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md3"></a>
-Changed</h2>
-<ul>
-<li><span class="tt">minEngine</span> 0.19.0: built against engine 0.19.0, whose component metadata records the package each class is in. A build of this package from before does not load and is rebuilt.</li>
-</ul>
-<h2 class="doxsection"><a class="anchor" id="autotoc_md4"></a>
-Added</h2>
-<ul>
-<li>Japanese, Simplified Chinese and Korean: <span class="tt">editor/lang/ja.json</span>, <span class="tt">zh.json</span> and <span class="tt">ko.json</span> translate the names, tooltips and enum values this package's components show in the Inspector.</li>
-</ul>
 <p>それ以前のリリース: <a href="https://github.com/dekiengine/deki-rtc/blob/master/CHANGELOG.md">CHANGELOG.md</a></p>
 <hr  />
-<p>パッケージのリフレクションデータから生成しています (エンジン 0.21.0)。プロパティ名はシーンファイルで使われるキーです。名前を変えても別名が残ります (<a href="https://github.com/dekiengine/deki-editor/blob/master/COMPATIBILITY.md">互換性</a>)。 </p>
+<p>パッケージのリフレクションデータから生成しています (エンジン 0.22.0)。プロパティ名はシーンファイルで使われるキーです。名前を変えても別名が残ります (<a href="https://github.com/dekiengine/deki-editor/blob/master/COMPATIBILITY.md">互換性</a>)。 </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
