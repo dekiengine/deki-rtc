@@ -9,11 +9,11 @@ namespace
 {
 inline uint8_t BcdToBin(uint8_t v)
 {
-    return (uint8_t)((v >> 4) * 10 + (v & 0x0F));
+    return static_cast<uint8_t>((v >> 4) * 10 + (v & 0x0F));
 }
 inline uint8_t BinToBcd(uint8_t v)
 {
-    return (uint8_t)(((v / 10) << 4) | (v % 10));
+    return static_cast<uint8_t>(((v / 10) << 4) | (v % 10));
 }
 }  // namespace
 
@@ -72,7 +72,7 @@ DekiDateTime DS3231RTC::Now() const
     if (reg[2] & 0x40)
     {
         const uint8_t h12 = BcdToBin(reg[2] & 0x1F);
-        dt.hour = (uint8_t)(h12 % 12 + ((reg[2] & 0x20) ? 12 : 0));
+        dt.hour = static_cast<uint8_t>(h12 % 12 + ((reg[2] & 0x20) ? 12 : 0));
     }
     else
     {
@@ -80,7 +80,7 @@ DekiDateTime DS3231RTC::Now() const
     }
     dt.day = BcdToBin(reg[4] & 0x3F);
     dt.month = BcdToBin(reg[5] & 0x1F);
-    dt.year = (uint16_t)(2000 + BcdToBin(reg[6]));
+    dt.year = static_cast<uint16_t>(2000 + BcdToBin(reg[6]));
     return dt;
 }
 
@@ -98,7 +98,7 @@ void DS3231RTC::SetDateTime(const DekiDateTime& dt)
         1,
         BinToBcd(dt.day),
         BinToBcd(dt.month),
-        BinToBcd((uint8_t)(dt.year - 2000)),
+        BinToBcd(static_cast<uint8_t>(dt.year - 2000)),
     };
     m_Bus->Write(kI2cAddr, 0x00, reg, 7);
 }

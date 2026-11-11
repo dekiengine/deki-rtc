@@ -30,7 +30,7 @@ void DS3231RTCComponent::Setup(SetupCallback onComplete)
     }
     else
     {
-        DEKI_LOG_ERROR("DS3231RTCComponent: Failed to initialize DS3231 on I2C port %d", (int)i2cPort);
+        DEKI_LOG_ERROR("DS3231RTCComponent: Failed to initialize DS3231 on I2C port %d", static_cast<int>(i2cPort));
     }
 
     if (onComplete)
